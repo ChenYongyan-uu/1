@@ -1,0 +1,61 @@
+# Python学习笔记
+
+
+
+## Day1
+
+-打印一连串（逗号相连）
+print("GC% is",GCp,'%',"/t","G is",G)
+
+-格式（输出要用“”括住
+
+Tabs: \t 
+Newlines(enter): \n 
+Quotes: " 
+Backslash: \\
+
+
+## Day2
+
+
+print(dna_seqs+qPCR_values+patient_ages)  #组合成一个list
+print(dna_seqs,qPCR_values,patient_ages)  #单纯展示出几个list
+
+-print (cells_seqs[0])    #this is the item at index 0, thus the list dna_seqs  一个list作为一个item呈现
+print (cells_seqs[0][0])    #this is the item at index 0, thus the list dna_seqs  一个list作为一个item呈现,想看list中的item再加一个
+
+
+-在一个list里添加一个item
+restriction_enzymes.append(my_enzyme) #直接就在restriction_enzymes加了，改变了这个list
+
+如果你不想改变原list，想把这个改变用一个新名字冠名
+*v2=restriction_enzymes.append(my_enzyme) # × 显示none
+*my_enzyme=[restriction_enzymes,my_enzyme]
+→[['gaattc', 'ggatcc', 'aagctt'], 'catgac'] # × 单纯展示list的结合
+*a=[restriction_enzymes+my_enzyme]  # × can only concatenate list (not "str") to list
+*b=[restriction_enzymes+"catgac"]  # × can only concatenate list (not "str") to list
+*c=[restriction_enzymes+[my_enzyme]] # √
+*d=restriction_enzymes+[my_enzyme] # √
+
+-把几个item重复几遍再组合一起
+*restriction_enzymes_r1=eco_r1*3+bam_h1*4+hind3*2
+gaattcgaattcgaattcggatccggatccggatccggatccaagcttaagctt
+*restriction_enzymes_r3=[eco_r1*3, bam_h1*4, hind3*2]
+['gaattcgaattcgaattc', 'ggatccggatccggatccggatcc', 'aagcttaagctt']
+*restriction_enzymes_r2=[eco_r1]*3+[bam_h1]*4+[hind3]*2
+['gaattc', 'gaattc', 'gaattc', 'ggatcc', 'ggatcc', 'ggatcc', 'ggatcc', 'aagctt', 'aagctt']
+
+
+**循环
+
+restriction_enzymes = [eco_r1.upper(),bam_h1.upper(),hind3.upper()]  
+i=0 #超级无敌关键的第一步!!!不然的话编号总是有问题
+for a in restriction_enzymes:
+    i+=1
+    A=a.count('A')
+    T=a.count('T')
+    C=a.count('C')
+    G=a.count('G')
+    print("Enzymes",i,"\n","A:",A,"\t","T:",T,"\t","C:",C,"\t","G:",G)
+
+
