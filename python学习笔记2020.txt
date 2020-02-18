@@ -1,19 +1,25 @@
 # Python学习笔记
 
 
-
 ## Day1
 
--打印一连串（逗号相连）
+
+
+- 打印一连串（逗号相连）
 print("GC% is",GCp,'%',"/t","G is",G)
 
--格式（输出要用“”括住
 
-Tabs: \t 
+
+- 格式（输出要用“”括住）
+
+Tabs: \t  
 Newlines(enter): \n 
 Quotes: " 
 Backslash: \\
 
+- 几个字母简单重叠
+  eco_ri*3   "A"*3
+	
 
 ## Day2
 
@@ -25,7 +31,7 @@ print(dna_seqs,qPCR_values,patient_ages)  #单纯展示出几个list
 print (cells_seqs[0][0])    #this is the item at index 0, thus the list dna_seqs  一个list作为一个item呈现,想看list中的item再加一个
 
 
--在一个list里添加一个item
+**在一个list里添加一个item**
 restriction_enzymes.append(my_enzyme) #直接就在restriction_enzymes加了，改变了这个list
 
 如果你不想改变原list，想把这个改变用一个新名字冠名
@@ -37,7 +43,7 @@ restriction_enzymes.append(my_enzyme) #直接就在restriction_enzymes加了，�
 *c=[restriction_enzymes+[my_enzyme]] # √
 *d=restriction_enzymes+[my_enzyme] # √
 
--把几个item重复几遍再组合一起
+**把几个item重复几遍再组合一起**
 *restriction_enzymes_r1=eco_r1*3+bam_h1*4+hind3*2
 gaattcgaattcgaattcggatccggatccggatccggatccaagcttaagctt
 *restriction_enzymes_r3=[eco_r1*3, bam_h1*4, hind3*2]
@@ -46,7 +52,7 @@ gaattcgaattcgaattcggatccggatccggatccggatccaagcttaagctt
 ['gaattc', 'gaattc', 'gaattc', 'ggatcc', 'ggatcc', 'ggatcc', 'ggatcc', 'aagctt', 'aagctt']
 
 
-**循环
+**循环**
 
 restriction_enzymes = [eco_r1.upper(),bam_h1.upper(),hind3.upper()]  
 i=0 #超级无敌关键的第一步!!!不然的话编号总是有问题
@@ -59,3 +65,42 @@ for a in restriction_enzymes:
     print("Enzymes",i,"\n","A:",A,"\t","T:",T,"\t","C:",C,"\t","G:",G)
 
 
+**在list中添加新item**
+
+1. 直接在屁股后面加
+seqs.extend(['cagtcagt','agctcgat','tacgtagc']) 
+
+2. 插队（精确到第几位，下面是空降至第三位）
+ seqs.insert(2,'atcg')
+
+**排序**
+
+- seqs.sort() #直接改变seqs的排序并储存
+- seq_sorted = sorted(seqs) #把新排序给了一个新变量，没有改变原seqs
+- 只按某个变量排以及，倒序排
+
+举例按年龄排序：
+students = [('john', 'A', 15), ('jane', 'B', 12), ('dave', 'B', 10)]
+sorted(students, key=lambda s: s[2])            
+
+降序：
+sorted(students, key=lambda s: s[2], reverse=True)   
+结果：[('john', 'A', 15), ('jane', 'B', 12), ('dave', 'B', 10)]
+
+**移除某一个item用 remove**
+seqs.remove('atcg')#从seqs中移除这个
+
+**list和string互变**
+
+amino = 'Ala Cys Phe Val Glu'.split(' ')  
+print (amino) # print what is in the list called amino
+
+print (' '.join(amino)) # print the what is in list amino after combining it by .join
+
+结果：
+['Ala', 'Cys', 'Phe', 'Val', 'Glu']
+Ala Cys Phe Val Glu
+
+**分割 split**
+print ('atgcatgcatgc'.split('t'))
+['a', 'gca', 'gca', 'gc']
