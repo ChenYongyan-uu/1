@@ -104,3 +104,48 @@ Ala Cys Phe Val Glu
 **分割 split**
 print ('atgcatgcatgc'.split('t'))
 ['a', 'gca', 'gca', 'gc']
+
+**字典 dictionary**
+
+属于一种list 花括号 key对应value
+
+
+> gene = { 'name' : "P53", 'function' : 'DNA-repair', 'length' : '20kb'}
+print(gene["length"])
+
+- 改内容
+
+		gene['name'] = 'HCV'
+ 
+- 找第几元素
+ps因为字典里其实没有顺序，所以你要把它变成一个传统list，随后才能找第几第几
+		
+		print(gene(0)) #× 显示TypeError: 'dict' object is not callable
+
+此时又涉及到你想找的是第几key呢还是第几value，以下list后的括号必须要对好！是唯一答案！
+
+	print (list(gene.values())[0])  #找value
+	P53
+	print(list(gene)[0])#找key
+	name
+
+- 根据一个key来找value  
+	
+		nucleotides={'A':'Adenosine','T':'Thymine','C':'Cytosine','G':'Guanine'}
+		if a in nucleotides.keys():
+		print (nucleotides[a])
+		else:
+		print("Can't check its name.")
+
+- 删改
+
+		gene["origin"] = "human" #新增或修改
+		del gene["function"] #删
+
+- 加的时候，要确保这个变量是int或者float，可以在一输入的时候确定它
+
+		load=int(input("Enter a virus load(e.g. 1000)."))
+
+2b最后的assignment type不会做。。。
+
+##Day 3
