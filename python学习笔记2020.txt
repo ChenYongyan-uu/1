@@ -1,7 +1,7 @@
 # Python学习笔记
 
 
-## Day1
+# Day1
 
 
 
@@ -19,9 +19,27 @@ Backslash: \\
 
 - 几个字母简单重叠
   eco_ri*3   "A"*3
+
+- 表示范围的时候： 
+
+		range(0,7,3)    #从第一位到第七位，三位一体
+		d=bb[i:i+base]  #bb是一个string字符串
+
+- 不会的时候
+  `?random.sample  #运行即可看到详细介绍`
 	
 
-## Day2
+- 新建
+
+	字符串  dna=‘’
+	字典   dir={}
+	list   l=[]
+
+
+
+
+
+# Day2
 
 
 print(dna_seqs+qPCR_values+patient_ages)  #组合成一个list
@@ -31,7 +49,7 @@ print(dna_seqs,qPCR_values,patient_ages)  #单纯展示出几个list
 print (cells_seqs[0][0])    #this is the item at index 0, thus the list dna_seqs  一个list作为一个item呈现,想看list中的item再加一个
 
 
-**在一个list里添加一个item**
+**在一个list里添加一个item ('a','c','b'..)**
 restriction_enzymes.append(my_enzyme) #直接就在restriction_enzymes加了，改变了这个list
 
 如果你不想改变原list，想把这个改变用一个新名字冠名
@@ -40,11 +58,12 @@ restriction_enzymes.append(my_enzyme) #直接就在restriction_enzymes加了，�
 →[['gaattc', 'ggatcc', 'aagctt'], 'catgac'] # × 单纯展示list的结合
 *a=[restriction_enzymes+my_enzyme]  # × can only concatenate list (not "str") to list
 *b=[restriction_enzymes+"catgac"]  # × can only concatenate list (not "str") to list
+
 *c=[restriction_enzymes+[my_enzyme]] # √
 *d=restriction_enzymes+[my_enzyme] # √
 
 **把几个item重复几遍再组合一起**
-*restriction_enzymes_r1=eco_r1*3+bam_h1*4+hind3*2
+*restriction_enzymes_r1=eco_r1*3+bam_h1*4+hind3*2 (string相加的特点，只要+，不用‘’）
 gaattcgaattcgaattcggatccggatccggatccggatccaagcttaagctt
 *restriction_enzymes_r3=[eco_r1*3, bam_h1*4, hind3*2]
 ['gaattcgaattcgaattc', 'ggatccggatccggatccggatcc', 'aagcttaagctt']
@@ -118,7 +137,7 @@ print(gene["length"])
 		gene['name'] = 'HCV'
  
 - 找第几元素
-ps因为字典里其实没有顺序，所以你要把它变成一个传统list，随后才能找第几第几
+ps因为字典里其实没有顺序，所以你要把它变成一个传统**list**，随后才能找第几第几
 		
 		print(gene(0)) #× 显示TypeError: 'dict' object is not callable
 
@@ -146,6 +165,183 @@ ps因为字典里其实没有顺序，所以你要把它变成一个传统list�
 
 		load=int(input("Enter a virus load(e.g. 1000)."))
 
-2b最后的assignment type不会做。。。
+- 默认是key
+		
+		my_pets ={"animal1":"xenopus","animal2":"cat","animal3":"dog"}
+		for keys in my_pets:
+  	    print(keys)  #打印出来就是key，程序里的‘key'你可以换任意名字，出来的都是key
 
-##Day 3
+
+
+> 2b最后的assignment type不会做。。。
+
+#Day 3
+
+**function**
+
+	def function_name(parameter1, parameter2):
+	value = parameter1 
+	return value  
+
+- parameter设置的时候可以直接让其等于一个固定值，此固定值为默认值，参考以下经典例子：
+
+		def get_counts(bb,base=4): #设置base默认值为4
+    		times={}
+    		for i in range(0,len(bb),base):
+        		d=bb[i:i+base]
+       			if d in times:
+            		times[d]=times[d]+1
+        		else:
+            		times[d]=1
+    		return(times)
+		
+		hiv_gag = 'ATGGGTGCGAGAGCGTCAGTATTAAGCGGGGGAGAATTAGAAGACAGGATGAGGATTAGT'
+		print(get_counts(hiv_gag,3))  #这样是设置base为3
+		print(get_counts(hiv_gag))    #这样是默认base为4 
+
+
+**Default modules**
+
+要先import，再使用
+
+		import math
+
+		print (math.factorial(5)) #prints 5!
+		print (math.log(100,10)) #prints log10(100)
+		print (math.sqrt(49)) #prints the square root of 49
+
+		import random
+
+		print (random.randint(0,5))  #0到5之间随意整数
+		print (random.normalvariate(10,3)) #generates a number with a normal variation. 10 being the mean and 3 the standard deviation
+		print(random.random()) #0到1之间的随意数
+		
+		random.sample(range(0,20),10) #在0到20之间随意取10个数
+
+		在既定的范围内抽选字符串：
+		print(random.choice(['A','T','G','C']))
+		print(random.choice("ATCG"))
+
+
+
+#Day 4
+##画图4a
+要先把plot module从matplotlib里搞到jupyter上，随后按普通的import，因为这个名字太长了所以换了个短名：
+
+	%matplotlib inline
+	import matplotlib.pyplot as plt
+	#随后你就开始表演
+	plt.plot([1,2,3,4],[2,4,6,12]) 
+	plt.show()
+	#想把这个图保存下来，存到了和这个稿子一个文件夹里
+	plt.savefig('test_plot.png', transparent=True)
+
+- 线条，坐标轴&标题命名：
+
+		plt.plot([1,2,3,4],[2,4,6,12],label='Series1')#这个是针对这条线的名字，一条线的时候不显示，多线就会出图例显示出来
+		plt.xlabel("Time") #x，y轴的命名
+		plt.ylabel("Fluorescence")
+		plt.title("Plot") #标题
+
+- 颜色、线的形状、点的形状、图例
+	
+		plt.plot([1,2,3,4],[2,4,6,12],label='S1', marker='x', linestyle='-', color='b') 
+		plt.plot([1,2,3,4],[1,4,9,16],label='S2', marker='o', linestyle='--', color='r')
+		plt.plot([1,2,3,4],[3,0,20,9],label='S3', marker='.', linestyle='-.', color='g')
+		plt.legend() #调出图例
+- 柱状图
+   
+我觉得这个例子，可以好好参考怎么一个一个数加进去然后作图
+
+		import matplotlib.pyplot as plt
+		import random 
+		#Create an empty list to store data 
+		data=[] 
+		#Generate 500 data values 
+		for i in range(500): 
+    		data += [random.normalvariate(10, 3)] 
+		#Plot a histogram 
+		plt.hist(data,bins=10)  ## change the bins in to a different number
+
+		#Set X and Y labels and plot title 
+		plt.xlabel('Values') 
+		plt.ylabel('Frequency') 
+		plt.title('Normal Distribution') 
+
+		plt.show()
+
+> 4a最后的assignment type不会做。。。
+
+##Regular expressions 4b
+
+- Finding patterns 找对象，看是不是一样（字符对字符）
+
+		string = "CCTGGAGCCCAGGGGACGT"
+		'CCCGG'in string
+		'CCGGG'in string
+		'CCTGG'in string
+像上面这个情况，三个是or的关系，只要有一个是True就输出Ture.所以如果你要三个都验证，要分开三个代码块才行。
+
+
+- re.findall 专门找对象的function （区分字母大小写）
+		
+如下：如果没发现，就会[],以空的list返回；如果发现了一个，['GAATTC']；发现两个，['GAATTC'，'GAATTC']
+		
+		import re
+		EcoRI_site = "GAATTC"
+		sequence = "TGCATAGCGAATTCGAGCGT"
+		print (re.findall(EcoRI_site, sequence))
+
+升级版：以下是可以通过[ ]来限制几个因素，一个[]对应字母，满足到旁边的条件就可以被选上
+
+		版本1
+		Eco13kl_site = "CCNGG"
+		sequence = "CCTGGAGCCCAGGGAGCGT"
+		print (re.findall(("CC[ATCG]GG"), sequence))  #在这里[]
+		结果：['CCTGG', 'CCAGG']
+		
+		版本2
+		Eco13kl_site = "CC[ACGT]GG"  #在开头就[]了
+		sequence = "CCTGGAGCCCAGGGAGCGT"
+		print (re.findall(Eco13kl_site, sequence))
+
+
+
+> ^ 与开头一致
+> $ 与this line结尾一致
+> . Matches any single character except newline
+> [...] Matches any single character in brackets
+> [^...] Matches any single character not in brackets
+> a | b Matches either a or b
+> a*b   a可以有或无，b一定有。a如果有，就要和b连起来，aab也行
+> \w\w\w 字母 \d 数字 \D 大写字母、特殊符号  \S 大写字母、数字 \s 特殊符号(eg.\n，空格)
+
+	line = "CCTGGAG123CCCCAGGTGACGT\nTGT"
+	find_output = re.findall("^CC",line)
+	print (find_output)
+
+- re.sub 替代
+
+		re.sub(pattern, repl, string, count=0, flags=0)
+		#（原来的，现在要替代的，串的名字，替代几个）
+
+> 加上分组完全不懂...
+
+
+- re.split 分割
+
+		re.split(pattern, string, maxsplit=0, flags=0)
+		需要在哪里割，串的名字，最多割几个
+- flag？？？
+ 
+可以使用按位或‘|‘表示同时生效，也可以在正则表达式中指定。
+
+re.I 忽略大小写
+
+re.L 表示特殊字符集\w,\W,\b,\B,\s,\S
+
+re.M 表示多行模式
+
+re.S ‘.’包括换行符在内的任意字符
+
+re.U 表示特殊字符集\w,\W,\b,\B,\d,\D,\s,\D
