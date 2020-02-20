@@ -24,6 +24,8 @@ Backslash: \\
 
 		range(0,7,3)    #从第一位到第七位，三位一体
 		d=bb[i:i+base]  #bb是一个string字符串
+		print(data[0:10]) #data是个list，看list中前10个item
+
 
 - 不会的时候
   `?random.sample  #运行即可看到详细介绍`
@@ -145,8 +147,10 @@ ps因为字典里其实没有顺序，所以你要把它变成一个传统**list
 
 	print (list(gene.values())[0])  #找value
 	P53
-	print(list(gene)[0])#找key
+	print(list(gene)[0])#找key第一种
 	name
+	print(list(gene.keys())[0])#找key第二种
+
 
 - 根据一个key来找value  
 	
@@ -171,6 +175,23 @@ ps因为字典里其实没有顺序，所以你要把它变成一个传统**list
 		for keys in my_pets:
   	    print(keys)  #打印出来就是key，程序里的‘key'你可以换任意名字，出来的都是key
 
+- 从两个list，一一匹配成一个dictionary
+
+		dict={}
+		#方法1
+		for i in range(len(list)):  #如果长度不一样，以短的
+   			dict[list[i]]=name_list[i]
+		print(dict)
+ 		#方法2
+		print zip(range(5), ["a","b","c","d","e"])
+		[(0, "a"), (1, "b"), (2, "c"), (3, "d"), (4, "e")]
+ 
+		names_and_professions = zip(names, professions)
+		print names_and_professions
+		[("Nick", "Programmer"), ("Alice", "Engineer"), ("Kitty", "Art Therapist")]
+ 
+		for name, profession in names_and_professions:
+		professions_dict[name] = profession
 
 
 > 2b最后的assignment type不会做。。。
@@ -345,3 +366,28 @@ re.M 表示多行模式
 re.S ‘.’包括换行符在内的任意字符
 
 re.U 表示特殊字符集\w,\W,\b,\B,\d,\D,\s,\D
+
+#DAY6
+##file
+
+- 读取文件
+
+		bsm_file = open("Bolivian_squirrel_monkey_genes_mart_export.txt","r") #文件名，r只读，w只写
+
+- 读完记得关上
+		
+		bsm_file.close()
+
+
+- 展示文件，几行
+
+		print(bsm_file.readline()) # 读第一行
+		print(bsm_file.readline()) # 读第二行
+		如此类推，一直输就一直有得看，嫌麻烦可以直接代码
+
+		for  i in range(0,11):
+    	print(bsm_file.readline()) #一口气看10行
+
+
+
+		
